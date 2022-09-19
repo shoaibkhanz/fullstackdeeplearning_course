@@ -20,6 +20,7 @@ plotly = "^5.10.0"
 jupyterlab = "^3.4.7"
 wandb = "^0.13.3"
 torchvision = "^0.13.1"
+isort = "^5.10.1"
 
 [tool.poetry.dev-dependencies]
 pynvim = "^0.4.3"

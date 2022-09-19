@@ -10,7 +10,7 @@ import random
 def download_data(path):
     """
 
-    :param path: 
+    :param path:
 
     """
     url = "https://github.com/pytorch/tutorials/raw/master/_static/"
@@ -22,14 +22,17 @@ def download_data(path):
 
     return path / filename
 
-def read_mnist(path):
-    with gzip.open(path,"rb") as f:
-        ((xtrain,ytrain),(xvalid,yvalid), _) = pickle.load(f,encoding="latin-1")
-    return xtrain,ytrain,xvalid,yvalid
 
-def map_to_tensor(xtrain,ytrain,xvalid,yvalid):
-    xtrain,ytrain,xvalid,yvalid = map(torch.tensor,(xtrain,ytrain,xvalid,yvalid))
-    return xtrain,ytrain,xvalid,yvalid
+def read_mnist(path):
+    with gzip.open(path, "rb") as f:
+        ((xtrain, ytrain), (xvalid, yvalid), _) = pickle.load(f, encoding="latin-1")
+    return xtrain, ytrain, xvalid, yvalid
+
+
+def map_to_tensor(xtrain, ytrain, xvalid, yvalid):
+    xtrain, ytrain, xvalid, yvalid = map(torch.tensor, (xtrain, ytrain, xvalid, yvalid))
+    return xtrain, ytrain, xvalid, yvalid
+
 
 if __name__ == "__main__":
 
@@ -39,17 +42,15 @@ if __name__ == "__main__":
 
     datafile = download_data(path)
     print(datafile)
-    xtrain,ytrain,xvalid,yvalid = read_mnist(datafile)
+    xtrain, ytrain, xvalid, yvalid = read_mnist(datafile)
     print(xtrain.shape)
 
-    datalist = [xtrain,ytrain,xvalid,yvalid]
-    xtrain,ytrain,xvalid,yvalid = map_to_tensor(xtrain,ytrain,xvalid,yvalid)
+    datalist = [xtrain, ytrain, xvalid, yvalid]
+    xtrain, ytrain, xvalid, yvalid = map_to_tensor(xtrain, ytrain, xvalid, yvalid)
     print(xtrain.shape)
-    
-    idx = random.randint(0,len(xtrain))
+
+    idx = random.randint(0, len(xtrain))
     example = xtrain[idx]
 
     print(ytrain[idx])
-    wandb.Image(example.reshape(1,28,28)).image
-    
-
+    wandb.Image(example.reshape(1, 28, 28)).image

@@ -432,6 +432,20 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "isort"
+version = "5.10.1"
+description = "A Python utility / library to sort Python imports."
+category = "main"
+optional = false
+python-versions = ">=3.6.1,<4.0"
+
+[package.extras]
+pipfile_deprecated_finder = ["pipreqs", "requirementslib"]
+requirements_deprecated_finder = ["pipreqs", "pip-api"]
+colors = ["colorama (>=0.4.3,<0.5.0)"]
+plugins = ["setuptools"]
+
+[[package]]
 name = "jedi"
 version = "0.18.1"
 description = "An autocompletion tool for Python that can be used for text editors."
@@ -1472,7 +1486,7 @@ docs = ["sphinx-rtd-theme (>=0.5)", "Sphinx (>=3.4)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "95fe470623d6a883c38a35257ab53491c342c738a1234a42f16e3baba4469b10"
+content-hash = "66365da6465cc2d16c86ba708c0e1018d18b5e1576b31963e86a153eb26ca1ab"
 
 [metadata.files]
 anyio = []
@@ -1509,6 +1523,7 @@ idna = []
 ipykernel = []
 ipython = []
 ipython-genutils = []
+isort = []
 jedi = []
 jinja2 = []
 json5 = []
