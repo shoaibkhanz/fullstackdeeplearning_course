@@ -5,6 +5,7 @@ import torch
 import wandb
 
 from data_utils import (
+    accuracy,
     cross_entropy,
     linear,
     log_softmax,
@@ -38,3 +39,4 @@ if __name__ == "__main__":
     loss = loss_func(preds, yb)
     print(f"loss: {loss}")
     print(bias.grad)
+    print(f"accuracy: {accuracy(preds,yb)}")
