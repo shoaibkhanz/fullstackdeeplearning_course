@@ -31,6 +31,9 @@ PyQt5 = "^5.15.7"
 [tool.poetry.dev-dependencies]
 pynvim = "^0.4.3"
 
+[tool.poetry.group.dev.dependencies]
+matplotlib-backend-kitty = "^2.1.1"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
