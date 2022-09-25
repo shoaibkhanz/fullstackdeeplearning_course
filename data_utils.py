@@ -49,8 +49,10 @@ def log_softmax(x: torch.Tensor) -> torch.Tensor:
 def cross_entropy(pred, actual):
     return -pred[range(actual.shape[0]), actual].mean()
 
+
 def accuracy(pred, actual) -> torch.Tensor:
-    return (torch.argmax(pred,dim=1)==actual).float().mean()
+    return (torch.argmax(pred, dim=1) == actual).float().mean()
+
 
 def mnist_wb(nclasses: int = 10) -> torch.Tensor:
     weights = torch.randn(784, nclasses) / math.sqrt(784)

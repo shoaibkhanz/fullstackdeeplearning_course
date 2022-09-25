@@ -1,23 +1,26 @@
 """Sets up both local Jupyter and Google Colab notebooks for the FSDL course in the same state."""
 import os
-from pathlib import Path
 import shutil
-import sys
 import subprocess
+import sys
+from pathlib import Path
 from subprocess import PIPE, Popen
-
 
 try:  # check if we're in a git repo
     repo_dir = (
         subprocess.run(
-            ["git", "rev-parse", "--show-toplevel"], capture_output=True, check=True
+            ["git", "rev-parse", "--show-toplevel"],
+            capture_output=True,
+            check=True,
         )
         .stdout.decode()
         .strip()
     )
     repo = Path(repo_dir).name
 except subprocess.CalledProcessError:
-    repo = os.environ.get("FSDL_REPO", "fsdl-text-recognizer-2022-labs")
+    repo = os.environ.get(
+        "FSDL_REPO", "fsdl-text-recognizer-2022-labs"
+    )
 
 branch = os.environ.get("FSDL_BRANCH", "main")
 token = os.environ.get("FSDL_GHTOKEN")
@@ -60,7 +63,9 @@ def change_to_lab_dir(lab_idx=None):
 
 
 def _clone_repo(repo, branch, prefix):
-    url = f"https://{prefix}github.com/full-stack-deep-learning/{repo}"
+    url = (
+        f"https://{prefix}github.com/full-stack-deep-learning/{repo}"
+    )
     subprocess.run(  # run git clone
         ["git", "clone", "--branch", branch, "-q", url], check=True
     )
@@ -68,12 +73,15 @@ def _clone_repo(repo, branch, prefix):
 
 def _install_dependencies_colab():
     subprocess.run(  # directly pip install the prod requirements
-        ["pip", "install", "--quiet", "-r", "requirements/prod.in"], check=True
+        ["pip", "install", "--quiet", "-r", "requirements/prod.in"],
+        check=True,
     )
 
     # run a series of commands with pipes to pip install the dev requirements
     subprocess.run(
-        ["sed 1d requirements/dev.in | grep -v '#' | xargs pip install --quiet"],
+        [
+            "sed 1d requirements/dev.in | grep -v '#' | xargs pip install --quiet"
+        ],
         shell=True,
         check=True,
     )
