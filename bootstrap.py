@@ -67,7 +67,8 @@ def _clone_repo(repo, branch, prefix):
         f"https://{prefix}github.com/full-stack-deep-learning/{repo}"
     )
     subprocess.run(  # run git clone
-        ["git", "clone", "--branch", branch, "-q", url], check=True
+        ["git", "clone", "--branch", branch, "-q", url, "fsdl"],
+        check=True,
     )
 
 
